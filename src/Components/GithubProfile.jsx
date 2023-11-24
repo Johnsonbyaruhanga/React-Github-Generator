@@ -1,33 +1,24 @@
 import React from "react";
-import GithubProfileDetails from "./GithubProfileDetails";
-import GithubProfileCard from "./GithubProfileCard";
-class GithubProfile extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-render(){
+function GithubProfile({ userProfile }) {
   return (
-    <div>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-3">
-            {
-              object.keys(this.props).length !==0?
-              <GithubProfileCard profile={this.props.profile}/> : null
-            }    
-            </div>
-            <div className="col-md-5">
-              {
-                object.keys(this.props.profile).length !==0?
-            <GithubProfileDetails profile={this.props.profile}/> : null
-              }
-            </div>
-          </div>
-        </div>
-      </div>
-    
+    <div className="flex flex-col justify-center items-center bg-gray-800 text-white p-4 rounded-lg">
+      <img
+        src={userProfile.avatar_url}
+        alt="Profile Pic"
+        className="rounded-full w-50 h-50 mb-2"
+      />
+
+      <h1 className="text-3x1 font-bold text-blue mb-1">{userProfile.login}</h1>
+
+      <p className="text-sm">
+        {" "}
+        <a href={userProfile.html_url} target="_blank" rel="">
+          {userProfile.login}
+        </a>
+      </p>
+
+      <p className="text-sm"> Followers:{userProfile.followers}</p>
+    </div>
   );
-}
 }
 export default GithubProfile;
